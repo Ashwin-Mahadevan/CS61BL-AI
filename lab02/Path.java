@@ -4,7 +4,7 @@ public class Path {
     private Point curr, next;
 
     public Path(double x, double y) {
-        curr = new Point(2, 4);
+        curr = new Point(0, 0);
         next = new Point(x, y);
     }
 
