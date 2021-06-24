@@ -33,8 +33,7 @@ public class Path {
     }
 
     public void iterate(double dx, double dy) {
-        Point oldCurr = curr;
         curr = next;
-        next = new Point(oldCurr.getX() + dx, oldCurr.getY() + dy);
+        next = new Point(curr.getX() + dx, curr.getY() + dy);
     }
 }
