@@ -44,14 +44,14 @@ public class SLList {
     /** Creates an empty SLList. */
     public SLList() {
         sentinel = new IntListNode(42, null);
-        sentinel.next = sentinel;
+        sentinel.next = null;
         size = 0;
     }
 
     public SLList(int x) {
         sentinel = new IntListNode(42, null);
         sentinel.next = new IntListNode(x, null);
-        sentinel.next.next = sentinel;
+        sentinel.next.next = null;
         size = 1;
     }
 
@@ -65,7 +65,7 @@ public class SLList {
         IntListNode l1 = sentinel.next;
         IntListNode l2 = slList.sentinel.next;
 
-        while (l1 != sentinel && l2 != slList.sentinel) {
+        while (l1 != null && l2 != null) {
             if (!l1.equals(l2)) return false;
             l1 = l1.next;
             l2 = l2.next;
@@ -78,7 +78,7 @@ public class SLList {
         IntListNode l = sentinel.next;
         String result = "";
 
-        while (l != sentinel) {
+        while (l != null) {
             result += l + " ";
             l = l.next;
         }
@@ -118,11 +118,38 @@ public class SLList {
 
     /** Adds x to the list at the specified index. */
     public void add(int index, int x) {
-        // TODO
+
+        IntListNode p = sentinel;
+
+        while (index > 0 && p.next != null) {
+            index -= 1;
+            p = p.next;
+        }
+
+        size += 1;
+
+        IntListNode next = p.next;
+        p.next = new IntListNode(x, next);
     }
 
     /** Destructively reverses this list. */
     public void reverse() {
-        // TODO
+        sentinel.next = reverse(sentinel.next);
     }
+
+    private IntListNode reverse(IntListNode node) {
+
+        if (node == null || node.next == null) {
+            return node;
+        }
+
+        IntListNode newNode = reverse(node.next);
+        node.next.next = node;
+        node.next = null;
+
+        return newNode;
+
+    }
+
+
 }
