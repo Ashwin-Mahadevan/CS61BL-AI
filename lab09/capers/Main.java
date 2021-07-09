@@ -1,6 +1,7 @@
 package capers;
 
 import java.io.File;
+import capers.Utils.*;
 
 /** Canine Capers: A Gitlet Prelude.
  * @author Sean Dooher
@@ -10,7 +11,7 @@ public class Main {
     static final File CWD = new File(".");
 
     /** Main metadata folder. */
-    static final File CAPERS_FOLDER = null; // FIXME
+    static final File CAPERS_FOLDER = Utils.join(CWD, ".capers");
 
     /**
      * Runs one of three commands:
@@ -49,7 +50,8 @@ public class Main {
             case "story":
                 writeStory(args);
                 break;
-            // FIXME
+            case "dog":
+                makeDog(args);
             default:
                 exitWithError(String.format("Unknown command: %s", args[0]));
         }
@@ -67,7 +69,9 @@ public class Main {
      *
      */
     public static void setupPersistence() {
-        // FIXME
+        if (!Dog.DOG_FOLDER.exists()) {
+            Dog.DOG_FOLDER.mkdirs();
+        }
     }
 
     /**
@@ -78,7 +82,16 @@ public class Main {
      */
     public static void writeStory(String[] args) {
         validateNumArgs("story", args, 2);
-        // FIXME
+        validateNumArgs("story", args, 2);
+        File storyFile = Utils.join(CAPERS_FOLDER, "story");
+        String story;
+        if (storyFile.exists()) {
+            story = Utils.readContentsAsString(storyFile) + args[1] + "\n";
+        } else {
+            story = args[1] + "\n";
+        }
+        Utils.writeContents(storyFile, story);
+        System.out.println(story);
     }
 
     /**
@@ -90,7 +103,13 @@ public class Main {
      */
     public static void makeDog(String[] args) {
         validateNumArgs("dog", args, 4);
-        // FIXME
+        try {
+            Dog dog = new Dog(args[1], args[2], Integer.parseInt(args[3]));
+            dog.saveDog();
+            System.out.println(dog);
+        } catch (NumberFormatException e) {
+            exitWithError("That's not a valid age :(");
+        }
     }
 
     /**
@@ -102,7 +121,13 @@ public class Main {
      */
     public static void celebrateBirthday(String[] args) {
         validateNumArgs("birthday", args, 2);
-        // FIXME
+        try {
+            Dog dog = Dog.fromFile(args[1]);
+            dog.haveBirthday();
+            dog.saveDog();
+        } catch (IllegalArgumentException e) {
+            exitWithError(e.getMessage());
+        }
     }
 
     /**
