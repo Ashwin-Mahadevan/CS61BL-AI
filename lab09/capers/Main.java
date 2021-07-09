@@ -52,8 +52,13 @@ public class Main {
                 break;
             case "dog":
                 makeDog(args);
+                break;
+            case "birthday":
+                celebrateBirthday(args);
+                break;
             default:
                 exitWithError(String.format("Unknown command: %s", args[0]));
+                break;
         }
         return;
     }
