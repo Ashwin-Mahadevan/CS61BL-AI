@@ -76,8 +76,8 @@ public class UnionFind {
         int p1 = find(v1);
         int p2 = find(v2);
 
-        int weight1 = -parent(p1);
-        int weight2 = -parent(p2);
+        int weight1 = -parents[p1];
+        int weight2 = -parents[p2];
 
         if (weight2 < weight1) {
             parents[p1] += parents[p2];
