@@ -68,6 +68,11 @@ public class UnionFind {
        root to V2's root. Union-ing a item with itself or items that are
        already connected should not change the structure. */
     public void union(int v1, int v2) {
+
+        if (v1 == v2) {
+            return;
+        }
+
         int p1 = find(v1);
         int p2 = find(v2);
 
