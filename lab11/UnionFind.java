@@ -93,5 +93,6 @@ public class UnionFind {
         uf.union(1, 2);
         uf.union(2, 3);
         System.out.println(uf.connected(1, 3));
+        uf.find(2);
     }
 }
