@@ -43,10 +43,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     RBTreeNode<T> buildRedBlackTree(Node<T> r) {
         if (r == null) {
             return null;
-        }
-
-        if (r.getItemCount() == 1) {
-            // TODO: Replace with code to create a 2 node equivalent
+        } else if (r.getItemCount() == 1) {
             RBTreeNode<T> left = buildRedBlackTree(r.getChildAt(0));
             RBTreeNode<T> right = buildRedBlackTree(r.getChildAt(1));
             return new RBTreeNode<T>(true, r.getItemAt(0), left, right);
@@ -72,8 +69,11 @@ public class RedBlackTree<T extends Comparable<T>> {
     /* Rotates the given node NODE to the right. Returns the new root node of
        this subtree. */
     RBTreeNode<T> rotateRight(RBTreeNode<T> node) {
-        // TODO: YOUR CODE HERE
-        return null;
+        RBTreeNode<T> newRoot = node.left;
+        RBTreeNode<T> swappedChild = newRoot.right;
+        newRoot.right = node;
+        node.left = swappedChild;
+        return newRoot;
     }
 
     /* Rotates the given node NODE to the left. Returns the new root node of
