@@ -3,7 +3,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     /* Root of the tree. */
     public RBTreeNode<T> root;
 
-    private static class RBTreeNode<T> {
+    public static class RBTreeNode<T> {
 
         public final T item;
         public boolean isBlack;
@@ -88,7 +88,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
     /* Inserts the given node into this Red Black Tree*/
-    private RBTreeNode<T> insert(RBTreeNode<T> node, T item) {
+    public RBTreeNode<T> insert(RBTreeNode<T> node, T item) {
         // Insert (return) new red leaf node.
         if (node == null) {
             return new RBTreeNode<>(false, item);
@@ -118,7 +118,7 @@ public class RedBlackTree<T extends Comparable<T>> {
 
     /* Returns whether the given node NODE is red. Null nodes (children of leaf
        nodes are automatically considered black. */
-    private boolean isRed(RBTreeNode<T> node) {
+    public boolean isRed(RBTreeNode<T> node) {
         return node != null && !node.isBlack;
     }
 
