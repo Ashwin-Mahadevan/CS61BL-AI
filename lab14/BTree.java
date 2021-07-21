@@ -1,14 +1,13 @@
 public class BTree<T extends Comparable<T>> {
 
     /* Root of the tree. */
-    TwoThreeFourNode<T> root;
+    public TwoThreeFourNode<T> root;
 
     public static class TwoThreeFourNode<T> implements Node<T> {
 
-        private final T[] items;
-        private final Node<T>[] children;
+        public final T[] items;
+        public final Node<T>[] children;
 
-        @SuppressWarnings("unchecked")
         public TwoThreeFourNode(T... items) {
             this.items = (T[]) new Object[items.length];
             System.arraycopy(items, 0, this.items, 0, items.length);

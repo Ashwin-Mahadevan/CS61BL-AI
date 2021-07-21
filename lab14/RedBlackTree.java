@@ -1,14 +1,14 @@
 public class RedBlackTree<T extends Comparable<T>> {
 
     /* Root of the tree. */
-    RBTreeNode<T> root;
+    public RBTreeNode<T> root;
 
-    static class RBTreeNode<T> {
+    private static class RBTreeNode<T> {
 
-        final T item;
-        boolean isBlack;
-        RBTreeNode<T> left;
-        RBTreeNode<T> right;
+        public final T item;
+        public boolean isBlack;
+        public RBTreeNode<T> left;
+        public RBTreeNode<T> right;
 
         /* Creates a RBTreeNode with item ITEM and color depending on ISBLACK
            value. */
@@ -47,13 +47,16 @@ public class RedBlackTree<T extends Comparable<T>> {
 
         if (r.getItemCount() == 1) {
             // TODO: Replace with code to create a 2 node equivalent
-            return null
+            RBTreeNode<T> left = buildRedBlackTree(r.getChildAt(0));
+            RBTreeNode<T> right = buildRedBlackTree(r.getChildAt(1));
+            return new RBTreeNode<T>(true, r.getItemAt(0), left, right);
         } else if (r.getItemCount() == 2) {
-            // TODO: Replace with code to create a 3 node equivalent
-            return null
+            RBTreeNode<T> left = new RBTreeNode<T>(false, r.getItemAt(0), buildRedBlackTree(r.getChildAt(0)), buildRedBlackTree(r.getChildAt(1)));
+            RBTreeNode<T> right = new RBTreeNode(true, buildRedBlackTree(r.getChildAt(2)));
+            return new RBTreeNode<T>(true, r.getItemAt(1), left, right);
         } else {
             // TODO: Replace with code to create a 4 node equivalent
-            return null
+            return null;
         }
     }
 
@@ -79,9 +82,9 @@ public class RedBlackTree<T extends Comparable<T>> {
         return null;
     }
 
-    public void insert(T item) {   
-        root = insert(root, item);  
-        root.isBlack = true;    
+    public void insert(T item) {
+        root = insert(root, item);
+        root.isBlack = true;
     }
 
     /* Inserts the given node into this Red Black Tree*/
@@ -102,13 +105,13 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
 
         // handle case C and "Right-leaning" situation.
-        
+
 
         // handle case B
-        
+
 
         // handle case A
-        
+
         // TODO: YOUR CODE HERE
         return null; //fix this return statement
     }
