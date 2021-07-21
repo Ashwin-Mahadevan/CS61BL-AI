@@ -79,8 +79,11 @@ public class RedBlackTree<T extends Comparable<T>> {
     /* Rotates the given node NODE to the left. Returns the new root node of
        this subtree. */
     RBTreeNode<T> rotateLeft(RBTreeNode<T> node) {
-        // TODO: YOUR CODE HERE
-        return null;
+        RBTreeNode<T> newRoot = node.right;
+        RBTreeNode<T> swappedChild = newRoot.left;
+        newRoot.left = node;
+        node.right = swappedChild;
+        return newRoot;
     }
 
     public void insert(T item) {
