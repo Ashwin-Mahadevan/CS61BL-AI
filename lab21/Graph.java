@@ -134,8 +134,23 @@ public class Graph {
     }
 
     public Graph prims(int start) {
-        // TODO: YOUR CODE HERE
-        return null;
+        Graph mst = new Graph();
+        WeightedQuickUnionUF ds = new WeightedQuickUnionUF(allEdges.size());
+
+        for (int v : getAllVertices()) {
+            mst.addVertex(v);
+        }
+
+        for (Edge e : getAllEdges()) {
+            if (ds.connected(e.getSource(), e.getDest())) {
+                // Move on;
+            } else {
+                ds.union(e.getSource(), e.getDest());
+                mst.addEdge(e);
+            }
+        }
+
+        return mst;
     }
 
     public Graph kruskals() {
